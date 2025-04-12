@@ -8,21 +8,57 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="title">HYDRO HERO</div>
-  <div class="tagline">No mask, no mug—just a hero and a jug.</div>
-  <div class="funny-line">You do get a cape, though</div>
-  <div class="avatar-container">
-    <img class="avatar" src="img/avatar-no-cape.png" alt="Avatar">
-    <div class="cape-sprite"></div>
-  </div>  
-  <div class="buttons">
-    <button onclick="startGame()">start</button><br>
-    <button>avatar</button>
-    <button>settings</button>
-    <button>about</button>
-    <button><a href="" target="_blank">donate</a></button>
+
+    <!-- title screen (hidden once game starts) -->
+    <div id="title-screen">
+        <div class="title">HYDRO HERO</div>
+    <div class="tagline">No mask, no mug—just a hero and a jug.</div>
+    <div class="funny-line">You do get a cape, though</div>
+    <div class="avatar-container">
+        <img class="avatar" src="img/avatar-no-cape.png" alt="Avatar">
+        <div class="cape-sprite"></div>
+    </div>  
+    <div class="buttons">
+        <button id="start-button" onclick="startGame()">start</button><br>
+        <button>avatar</button>
+        <button>settings</button>
+        <button>about</button>
+        <button><a href="" target="_blank">donate</a></button>
+    </div>
+    <button class="avatar-btn"></button>
+    </div>
+  
+  <!-- game screen -->
+  <div id="game-screen" style="display: none;">
+    <div class="top-bar">
+      <div class="lives">
+        <span>lives left:</span>
+        <img src="img/pixel-heart.png" class="heart" alt="Pixel heart">
+        <img src="img/pixel-heart.png" class="heart" alt="Pixel heart">
+        <img src="img/pixel-heart.png" class="heart" alt="Pixel heart">
+      </div>
+      <div class="level-display">
+        <h2>level 1</h2>
+        <p><span id="score">0</span> points</p>
+      </div>
+      <div class="timer">
+        <span>time elapsed:</span>
+        <span id="timer">0:00</span>
+      </div>
+    </div>
+  
+    <div class="game-area">
+      <img src="img/avatar.png" id="player-avatar">
+    </div>
+  
+    <div class="bottom-right-buttons">
+      <button>pause</button>
+      <button>settings</button>
+    </div>
   </div>
-  <button class="avatar-btn"></button>
-  <script src="script.js"></script>
+
+  <script src="js/script.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/player.js"></script>
 </body>
 </html>
