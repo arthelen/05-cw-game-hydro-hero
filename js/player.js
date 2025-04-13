@@ -1,3 +1,4 @@
+let backgroundX = 0;
 const player = document.getElementById("player-avatar");
 const gameArea = document.querySelector(".game-area");
 const gameAreaWidth = gameArea.offsetWidth;
@@ -7,6 +8,9 @@ let posX = 30;
 let posY = 100;
 let isJumping = false;
 let keys = {};
+
+// These keys are managed in game.js globally
+// let isHurt is already declared in game.js
 
 document.addEventListener("keydown", (e) => {
   keys[e.key.toLowerCase()] = true;
@@ -20,10 +24,16 @@ function updatePlayer() {
   // ▶️ move right (Hold D or →)
   if (keys["d"] || keys["arrowright"]) {
     posX += 5;
+    if (posX > 240) posX = 240;
+    if (posX < 0) posX = 0;
     player.style.left = posX + "px";
 
-    // Only change to walking sprite if not jumping
-    if (!isJumping) {
+    // Scroll background
+    backgroundX -= 2;
+    document.querySelector(".game-area").style.backgroundPosition = `${backgroundX}px 0`;
+
+    // Only change to walking sprite if not jumping or hurt
+    if (!isJumping && !isHurt) {
       player.src = "img/walking-avatar.png";
     }
   }
@@ -31,12 +41,15 @@ function updatePlayer() {
   // ⬆️ jump (Press W or ↑)
   if ((keys["w"] || keys["arrowup"]) && !isJumping) {
     isJumping = true;
-    player.src = "img/jumping-avatar.png";
 
-    const jumpHeight = 80;
+    if (!isHurt) {
+      player.src = "img/jumping-avatar.png";
+    }
+
+    const jumpHeight = 150;
     const jumpSpeed = 15;
     const gravity = 5;
-    const groundLevel = 100;
+    const groundLevel = 0;
 
     let jumpInterval = setInterval(() => {
       posY += jumpSpeed;
@@ -45,7 +58,6 @@ function updatePlayer() {
       if (posY >= groundLevel + jumpHeight) {
         clearInterval(jumpInterval);
 
-        // fall back down
         let fallInterval = setInterval(() => {
           posY -= gravity;
           player.style.bottom = posY + "px";
@@ -56,11 +68,13 @@ function updatePlayer() {
             clearInterval(fallInterval);
             isJumping = false;
 
-            // swap to walk or stand based on key held
-            if (keys["d"] || keys["arrowright"]) {
-              player.src = "img/walking-avatar.png";
-            } else {
-              player.src = "img/standing-avatar.png";
+            // return to appropriate sprite
+            if (!isHurt) {
+              if (keys["d"] || keys["arrowright"]) {
+                player.src = "img/walking-avatar.png";
+              } else {
+                player.src = "img/standing-avatar.png";
+              }
             }
           }
         }, 20);
@@ -68,8 +82,8 @@ function updatePlayer() {
     }, 20);
   }
 
-  // 🧍‍♂️ if not jumping or moving → standing
-  if (!isJumping && !keys["d"] && !keys["arrowright"]) {
+  // 🧍 if standing still
+  if (!isJumping && !keys["d"] && !keys["arrowright"] && !isHurt) {
     player.src = "img/standing-avatar.png";
   }
 
@@ -77,3 +91,4 @@ function updatePlayer() {
 }
 
 updatePlayer();
+

@@ -3,5 +3,6 @@ function startGame() {
   document.getElementById("game-screen").style.display = "block";
 
   startLevel(1);
+  console.log("game is updating");
 }
   

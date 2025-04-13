@@ -12,7 +12,15 @@ body {
     color: #fff;
     overflow: hidden;
     text-align: center;
-  }
+}
+
+  #title-screen {
+    background-image: url('img/level-background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 50px;
+}
   
 .title {
     color: #FFC907;
@@ -98,7 +106,7 @@ body {
     box-shadow: 4px 4px #000;
 }
 
-.buttons button a {
+button a {
     text-decoration: none;
     color: inherit;
 }
@@ -123,37 +131,19 @@ body {
     transform: translateY(2px);
     box-shadow: 1px 1px 0 #000;
 }
-  
-.avatar-btn {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    border: 2px solid #fff;
-    background-color: #FFC907;
-}
 
 /* game css */
-#game-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    width: 500px;
-    height: 300px;
-}
-
 .game-area {
+    margin: 0 auto;
     position: relative;
-    width: 500px;
-    height: 300px;
-    background-color: #e6faff; /* light blue */
-    border: 2px solid #003366;
-    margin: 40px auto;
-    overflow: hidden; /* keeps avatar from leaving the box! */
-  }
+    width: 900px;
+    height: 600px;
+    overflow: hidden;
+    background-image: url('img/level-background.png');
+    background-repeat: repeat-x;
+    background-position: 0 0;
+    background-size: cover;
+}
 
 .top-bar {
     display: flex;
@@ -171,6 +161,13 @@ body {
 }
 
 .level-display {
+    color: #003366;
+    font-size: 1.5rem;
+    text-shadow: 2px 0 #FFC907, -2px 0 #FFC907, 0 2px #FFC907, 0 -2px #FFC907,
+               1px 1px #FFC907, -1px -1px #FFC907, 1px -1px #FFC907, -1px 1px #FFC907;
+}
+
+#score, p {
     color: #FFC907;
     font-size: 1.5rem;
     text-shadow: 2px 0 #003366, -2px 0 #003366, 0 2px #003366, 0 -2px #003366,
@@ -178,19 +175,47 @@ body {
 }
 
 .heart {
-    width: 24px;
+    width: 45px;
     height: auto;
-    margin-left: 4px;
+}
+
+.obstacle {
+    z-index: 1;
+    position: absolute;
+    height: auto;
+    width: 30px;
 }
 
 #player-avatar {
     position: absolute;
     bottom: 0;
+    z-index: 2;
     left: 20px;
-    width: 60px;
+    width: 150px;
     height: auto;
     transition: bottom 0.1s, left 0.1s;
-}  
+}
+
+.point-popup {
+    position: absolute;
+    font-size: 20px;
+    font-family: 'Press Start 2P', cursive;
+    pointer-events: none;
+    animation: floatFade 0.8s ease-out;
+    z-index: 10;
+    color: #FFC907;
+  }
+  
+  @keyframes floatFade {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+  }  
 
 .bottom-right-buttons {
     position: absolute;
@@ -209,3 +234,17 @@ body {
     color: #003366;
     cursor: pointer;
 }
+
+.game-over-text {
+    position: absolute;
+    top: 37%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    color: #FFC907;
+    font-family: 'Press Start 2P', cursive;
+    z-index: 999;
+    background: rgba(0, 51, 102, 0.8);
+    padding: 20px;
+    border: 4px solid #003366;
+  }  

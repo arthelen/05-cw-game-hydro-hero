@@ -11,7 +11,7 @@
 
     <!-- title screen (hidden once game starts) -->
     <div id="title-screen">
-        <div class="title">HYDRO HERO</div>
+        <div class="title">hydro hero</div>
     <div class="tagline">No mask, no mug—just a hero and a jug</div>
     <div class="funny-line">(you do get a cape though)</div>
     <div class="avatar-container">
@@ -20,16 +20,16 @@
     </div>  
     <div class="buttons">
         <button id="start-button" onclick="startGame()">start</button><br>
-        <button>avatar</button>
-        <button>settings</button>
-        <button>about</button>
-        <button><a href="" target="_blank">donate</a></button>
+        <button><a href="not-ready.html">avatar</a></button>
+        <button><a href="not-ready.html">settings</a></button>
+        <button><a href="not-ready.html">about</a></button>
+        <button><a href="https://www.charitywater.org/take-action" target="_blank">donate</a></button>
     </div>
-    <button class="avatar-btn"></button>
     </div>
   
   <!-- game screen -->
   <div id="game-screen" style="display: none;">
+    <div id="game-over" style="display: none;" class="game-over-text">GAME OVER</div>
     <div class="top-bar">
       <div class="lives">
         <span>lives left:</span>
@@ -48,14 +48,14 @@
     </div>
   
     <div class="game-area">
-        <canvas id="game-canvas"></canvas>
         <img src="img/avatar.png" id="player-avatar">
       </div>
       
   
     <div class="bottom-right-buttons">
       <button>pause</button>
-      <button>settings</button>
+      <button><a href="not-ready.html">settings</a></button>
+      <button><a href="index.html">home</a></button>
     </div>
   </div>
 
