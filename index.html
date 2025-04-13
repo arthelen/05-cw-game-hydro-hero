@@ -3,60 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hydro Hero</title>
+  <title>hydro hero</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- title screen (hidden once game starts) -->
-    <div id="title-screen">
-        <div class="title">hydro hero</div>
+  <!-- title screen (hidden once game starts) -->
+  <div id="title-screen">
+    <div class="title">hydro hero</div>
     <div class="tagline">No mask, no mug—just a hero and a jug</div>
     <div class="funny-line">(you do get a cape though)</div>
     <div class="avatar-container">
-        <img class="avatar" src="img/avatar-no-cape.png" alt="Avatar">
-        <div class="cape-sprite"></div>
-    </div>  
+      <img class="avatar" src="img/avatar-no-cape.png" alt="Avatar">
+      <div class="cape-sprite"></div>
+    </div>
     <div class="buttons">
-        <button id="start-button" onclick="startGame()">start</button><br>
-        <button><a href="not-ready.html">avatar</a></button>
-        <button><a href="not-ready.html">settings</a></button>
-        <button><a href="not-ready.html">about</a></button>
-        <button><a href="https://www.charitywater.org/take-action" target="_blank">donate</a></button>
+      <button id="start-button" onclick="startGame()">start</button><br>
+      <button><a href="not-ready.html">avatar</a></button>
+      <button><a href="not-ready.html">settings</a></button>
+      <button><a href="not-ready.html">about</a></button>
+      <button><a href="https://www.charitywater.org/take-action" target="_blank">donate</a></button>
     </div>
-    </div>
-  
+  </div>
+
   <!-- game screen -->
   <div id="game-screen" style="display: none;">
-    <div id="game-over" style="display: none;" class="game-over-text">GAME OVER</div>
-    <div class="top-bar">
+    <div class="game-wrapper">
+    <div class="game-area">
+      <!-- game over text -->
+      <div id="game-over" class="game-over-text" style="display: none;">GAME OVER</div>
+
+      <!-- top left: lives -->
       <div class="lives">
         <span>lives left:</span>
-        <img src="img/pixel-heart.png" class="heart" alt="Pixel heart">
-        <img src="img/pixel-heart.png" class="heart" alt="Pixel heart">
-        <img src="img/pixel-heart.png" class="heart" alt="Pixel heart">
+        <img src="img/pixel-heart.png" class="heart" alt="heart">
+        <img src="img/pixel-heart.png" class="heart" alt="heart">
+        <img src="img/pixel-heart.png" class="heart" alt="heart">
       </div>
+
+      <!-- top center: score + level -->
       <div class="level-display">
         <h2>level 1</h2>
         <p><span id="score">0</span> points</p>
       </div>
+
+      <!-- top right: timer -->
       <div class="timer">
         <span>time elapsed:</span>
         <span id="timer">0:00</span>
       </div>
-    </div>
-  
-    <div class="game-area">
-        <img src="img/avatar.png" id="player-avatar">
+
+      <!-- the player avatar -->
+      <img src="img/avatar.png" id="player-avatar">
+
+      <!-- bottom right: pause/settings/home -->
+      <div class="bottom-right-buttons">
+        <button>pause</button>
+        <button><a href="not-ready.html">settings</a></button>
+        <button><a href="index.html">home</a></button>
       </div>
-      
-  
-    <div class="bottom-right-buttons">
-      <button>pause</button>
-      <button><a href="not-ready.html">settings</a></button>
-      <button><a href="index.html">home</a></button>
     </div>
+  </div>
   </div>
 
   <script src="js/script.js"></script>
