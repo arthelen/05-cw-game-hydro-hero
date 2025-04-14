@@ -19,6 +19,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    border: solid 4px #003366;
     padding: 50px;
 }
   
@@ -147,9 +148,9 @@ button a {
 .game-area {
   position: relative;
   width: 100%;
-  max-width: 768px;
+  max-width: 1000px;
   height: 100vh;
-  max-height: 600px;
+  max-height: 700px;
   background-image: url('img/level-background.png');
   background-repeat: repeat-x;
   background-position: 0 0;
@@ -251,7 +252,7 @@ button a {
   transform: translate(-50%, -50%);
   font-size: 24px;
   font-family: 'Press Start 2P', cursive;
-  background: #fff;
+  background: #FFC907;
   color: #003366;
   padding: 20px 30px;
   border: 3px solid #003366;
@@ -349,7 +350,7 @@ button a {
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 701px) {
   .game-area {
     max-width: 100%;
     max-height: 100vh;
@@ -357,26 +358,128 @@ button a {
     border-width: 2px;
   }
 
-  .level-display h2 {
-    font-size: 1rem;
+  #player-avatar {
+    width: 120px;
+  }
+
+  .droplet, .obstacle {
+    height: 150px;
   }
 
   .heart {
-    width: 18px;
+    width: 30px;
+  }
+}
+
+@media (max-width: 700px) {
+  .game-wrapper {
+    flex-direction: column;
+    padding: 5px;
+  }
+
+  .game-area {
+    max-height: none;
+    height: auto;
+    border-width: 2px;
+    border-radius: 5px;
+  }
+
+  .level-display, .timer, .lives {
+    position: static;
+    margin: 10px 0;
+  }
+
+  .bottom-right-buttons {
+    position: static;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 15px auto;
   }
 
   .bottom-right-buttons button {
-    font-size: 10px;
-    padding: 6px 10px;
+    margin: 5px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  #player-avatar {
+    width: 80px;
+  }
+
+  .droplet, .obstacle {
+    width: 10px;
+  }
+
+  .game-over-text, .popup-message {
+    width: 90%;
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .buttons button, #retry-btn, #go-home-btn, #return-home-btn {
+    font-size: 0.5rem;
+    padding: 10px 16px;
   }
 
   .point-popup {
-    font-size: 10px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-wrapper {
+    flex-direction: column;
+    padding: 5px;
   }
 
-  .game-over-text {
-    font-size: 24px;
+  .game-area {
+    max-height: none;
+    height: auto;
+    border-width: 2px;
+    border-radius: 5px;
+  }
+
+  .level-display, .timer, .lives {
+    position: static;
+    margin: 10px 0;
+  }
+
+  .bottom-right-buttons {
+    position: static;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 15px auto;
+  }
+
+  .bottom-right-buttons button {
+    margin: 5px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  #player-avatar {
+    width: 80px;
+  }
+
+  .droplet, .obstacle {
+    width: 40px;
+  }
+
+  .game-over-text, .popup-message {
+    width: 90%;
+    font-size: 16px;
     padding: 10px;
+  }
+
+  .buttons button, #retry-btn, #go-home-btn, #return-home-btn {
+    font-size: 0.5rem;
+    padding: 10px 16px;
+  }
+
+  .point-popup {
+    font-size: 12px;
   }
 }
   
