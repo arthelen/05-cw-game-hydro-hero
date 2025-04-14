@@ -1,9 +1,44 @@
 let isHurt = false;
+let currentLevel = 1;
 let obstacles = [];
 let lives = 3;
 let score = 0;
 let timeElapsed = 0;
 let timerInterval;
+let droplets = [];
+let updateGameFrame;
+
+document.getElementById("return-home-btn").addEventListener("click", () => {
+  document.getElementById("level-complete").style.display = "none";
+  document.getElementById("title-screen").style.display = "block";
+
+  // Reset visuals
+  player.style.display = "block";
+  player.src = "img/standing-avatar.png";
+  posX = 30;
+  posY = 0;
+  player.style.left = posX + "px";
+  player.style.bottom = posY + "px";
+});
+
+function createDroplet() {
+  const droplet = document.createElement("img");
+  droplet.src = "img/droplet.png"; // make sure you have this image!
+  droplet.classList.add("droplet");
+
+  droplet.style.position = "absolute";
+  droplet.style.width = "20px";
+  droplet.style.left = "500px";
+  droplet.style.bottom = `${Math.floor(Math.random() * 100) + 150}px`; // higher up
+  document.querySelector(".game-area").appendChild(droplet);
+  droplets.push(droplet);
+}
+
+setInterval(() => {
+  if (Math.random() < 0.7) { // adjust how often they spawn
+    createDroplet();
+  }
+}, 4000);
 
 // 🪨 Create a DOM-based obstacle
 function createObstacle(type) {
@@ -30,12 +65,15 @@ function spawnObstacle() {
 
 // ⏱️ Start level
 function startLevel(levelNumber) {
+  currentLevel = levelNumber; // track it!
   console.log(`Starting level ${levelNumber}`);
 
   // Reset all things
   score = 0;
   timeElapsed = 0;
   obstacles = [];
+  droplets.forEach(d => d.remove());
+  droplets = [];
 
   document.getElementById("score").textContent = 0;
   document.getElementById("timer").textContent = "0:00";
@@ -47,10 +85,42 @@ function startLevel(levelNumber) {
     const minutes = Math.floor(timeElapsed / 60);
     const seconds = timeElapsed % 60;
     document.getElementById("timer").textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-  }, 1000);
+  
+    if (timeElapsed === 30) {
+      clearInterval(timerInterval);
+      levelComplete();
+    }
+  }, 1000);  
 
   // Start game loop
   updateGame();
+}
+
+function updateDroplets() {
+  for (let i = droplets.length - 1; i >= 0; i--) {
+    const drop = droplets[i];
+    let currentLeft = parseInt(drop.style.left);
+    drop.style.left = (currentLeft - 2) + "px";
+
+    const dropRect = drop.getBoundingClientRect();
+    const playerRect = player.getBoundingClientRect();
+
+    if (
+      dropRect.left < playerRect.right &&
+      dropRect.right > playerRect.left &&
+      dropRect.top < playerRect.bottom &&
+      dropRect.bottom > playerRect.top
+    ) {
+      score += 100;
+      document.getElementById("score").textContent = score;
+      showPointPopup(100, true, dropRect.left, dropRect.top);
+      drop.remove();
+      droplets.splice(i, 1);
+    } else if (currentLeft < -30) {
+      drop.remove();
+      droplets.splice(i, 1);
+    }
+  }
 }
 
 // ♻️ Update obstacles and check collisions
@@ -123,27 +193,74 @@ function showPointPopup(amount, isPositive, x, y) {
   }, 800);
 }
 
+function levelComplete() {
+  // Stop everything
+  cancelAnimationFrame(updateGameFrame);
+  clearInterval(timerInterval);
+
+  document.getElementById("level-complete").style.display = "block";
+
+  // Remove active stuff
+  obstacles.forEach(obs => obs.remove());
+  droplets.forEach(drop => drop.remove());
+  obstacles = [];
+  droplets = [];
+
+  // Optionally hide player avatar
+  player.style.display = "none";
+}
+
+  document.getElementById("retry-btn").addEventListener("click", () => {
+  document.getElementById("game-over").style.display = "none";
+  player.style.display = "block";
+
+  // Reset lives
+  document.querySelectorAll(".heart").forEach(h => h.style.visibility = "visible");
+  lives = 3;
+
+  startLevel(currentLevel); // retry current level
+});
+
+document.getElementById("go-home-btn").addEventListener("click", () => {
+  document.getElementById("game-over").style.display = "none";
+  document.getElementById("title-screen").style.display = "block";
+  player.style.display = "block";
+
+  // Reset visual state
+  player.src = "img/standing-avatar.png";
+  posX = 30;
+  posY = 0;
+  player.style.left = posX + "px";
+  player.style.bottom = posY + "px";
+
+  // Reset lives
+  document.querySelectorAll(".heart").forEach(h => h.style.visibility = "visible");
+  lives = 3;
+});
+
+
 function gameOver() {
+  // Stop everything
+  cancelAnimationFrame(updateGameFrame);
+  clearInterval(timerInterval);
+
   document.getElementById("game-over").style.display = "block";
 
-  setTimeout(() => {
-    document.getElementById("game-over").style.display = "none";
+  // Clear remaining obstacles and droplets
+  obstacles.forEach(o => o.remove());
+  droplets.forEach(d => d.remove());
+  obstacles = [];
+  droplets = [];
 
-    // Reset lives display
-    const hearts = document.querySelectorAll(".heart");
-    hearts.forEach((heart) => {
-      heart.style.visibility = "visible";
-    });
-
-    lives = 3;
-    startLevel(1); // restart level
-  }, 2000);
+  // Optionally hide player
+  player.style.display = "none";
 }
 
 // 🌀 Game loop
 function updateGame() {
+  updateDroplets();
   updateObstacles();
-  requestAnimationFrame(updateGame);
+  updateGameFrame = requestAnimationFrame(updateGame);
 }
 
 // 🔁 Spawn obstacle every 3 seconds
