@@ -22,6 +22,12 @@ body {
     border: solid 4px #003366;
     padding: 50px;
 }
+
+.logo {
+    width: 200px;
+    height: auto;
+    margin-top: 20px;
+}
   
 .title {
     color: #FFC907;
