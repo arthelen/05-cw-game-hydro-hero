@@ -14,6 +14,7 @@ let lives = 3;
 let score = 0;
 let timeElapsed = 0;
 let backgroundX = 0;
+let isPaused = false;
 
 const player = document.getElementById("player-avatar");
 const gameArea = document.querySelector(".game-area");
@@ -387,6 +388,42 @@ function showPointPopup(amount, isPositive, x, y) {
   document.body.appendChild(popup);
   setTimeout(() => { popup.remove(); }, 800);
 }
+
+document.getElementById("pause-btn").addEventListener("click", () => {
+  isPaused = !isPaused;
+
+  if (isPaused) {
+    cancelAnimationFrame(updateGameFrame);
+    clearInterval(timerInterval);
+    clearInterval(dropletInterval);
+    clearInterval(obstacleInterval);
+
+    document.getElementById("pause-btn").textContent = "resume";
+    document.getElementById("paused-overlay").style.display = "block"; // <<< show overlay
+  } else {
+    timerInterval = setInterval(() => {
+      timeElapsed++;
+      const minutes = Math.floor(timeElapsed / 60);
+      const seconds = timeElapsed % 60;
+      document.getElementById("timer").textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+      if (timeElapsed === surviveTime) {
+        clearInterval(timerInterval);
+        levelComplete();
+      }
+    }, 1000);
+
+    dropletInterval = setInterval(() => {
+      if (Math.random() < 0.7) createDroplet();
+    }, 4000);
+
+    obstacleInterval = setInterval(spawnObstacle, obstacleFrequency);
+
+    updateGame();
+    document.getElementById("pause-btn").textContent = "pause";
+    document.getElementById("paused-overlay").style.display = "none"; // <<< hide overlay
+  }
+});
 
 // retry and home buttons
 document.getElementById("retry-btn").addEventListener("click", () => {
