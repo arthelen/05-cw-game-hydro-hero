@@ -48,7 +48,7 @@
         <br><br>
         <div class="game-over-buttons">
           <button id="retry-btn">retry</button>
-          <button id="go-home-btn">return home</button>
+          <button id="go-home-btn" onclick="window.location.href='index.html'">return home</button>
         </div>
       </div>
 
@@ -61,7 +61,7 @@
         </div>
       
         <div class="level-display">
-          <h2>level 1</h2>
+          <h2 id="level-text">level 1</h2>
           <p><span id="score">0</span> points</p>
         </div>
       
@@ -79,7 +79,7 @@
       </div>
       
       <div id="halfway-message" class="halfway-message" style="display: none;">
-        you're halfway there! 💧
+        your jug is is half full! 💧
       </div>      
 
       <!-- bottom right: pause/settings/home -->
@@ -93,7 +93,7 @@
       <img src="img/droplet.png" alt="Pixelated blue water droplet" class="droplet-icon-complete"><br><br>
       level complete! waterful job!
       <br><br>
-      <button id="return-home-btn">return home</button>
+      <button id="return-home-btn" onclick="window.location.href='index.html'">return home</button>
     </div>    
   </div>
   </div>

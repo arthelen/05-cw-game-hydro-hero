@@ -202,6 +202,7 @@ function startLevel(levelNumber) {
   droplets = [];
 
   gameArea.style.display = "block";
+  document.getElementById("level-text").textContent = difficulty;
   document.getElementById("score").textContent = 0;
   document.getElementById("timer").textContent = "0:00";
 
@@ -320,6 +321,9 @@ function updateGame() {
 function levelComplete() {
   cancelAnimationFrame(updateGameFrame);
   clearInterval(timerInterval);
+  clearInterval(dropletInterval);
+  clearInterval(obstacleInterval);
+
   document.getElementById("level-complete").style.display = "block";
   obstacles.forEach(o => o.remove());
   droplets.forEach(d => d.remove());
@@ -331,6 +335,9 @@ function levelComplete() {
 function gameOver() {
   cancelAnimationFrame(updateGameFrame);
   clearInterval(timerInterval);
+  clearInterval(dropletInterval);
+  clearInterval(obstacleInterval);
+
   document.getElementById("game-over").style.display = "block";
   obstacles.forEach(o => o.remove());
   droplets.forEach(d => d.remove());
