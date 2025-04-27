@@ -323,7 +323,7 @@ button a {
 }
 
 .obstacle {
-  width: 55px;
+  width: 75px;
   height: auto;
   image-rendering: pixelated;
   position: absolute;
@@ -371,13 +371,20 @@ button a {
   font-family: Georgia, serif;
   letter-spacing: 4px;
   font-weight: bold;
-  background: #FFC907;
+  background: rgb(255, 201, 7, 0.9);
   color: #003366;
   padding: 37px;
   border: 3px solid #003366;
   border-radius: 8px;
   z-index: 999;
   text-align: center;
+}
+
+.popup-message span {
+  font-family: 'Press Start 2P', cursive;
+  color: #FFC907;
+  text-shadow: 2px 0 #003366, -2px 0 #003366, 0 2px #003366, 0 -2px #003366,
+               1px 1px #003366, -1px -1px #003366, 1px -1px #003366, -1px 1px #003366;
 }
 
 .droplet-icon-complete {
@@ -420,8 +427,8 @@ button a {
 
 .bottom-right-buttons {
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    bottom: 700px;
+    right: 430px;
 }
 
 .bottom-right-buttons button {

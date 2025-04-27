@@ -109,7 +109,7 @@ document.addEventListener("keyup", (e) => {
 function updatePlayer() {
   if (keys["d"] || keys["arrowright"]) {
     posX += 5;
-    if (posX > 240) posX = 240;
+    if (posX > 240) posX = 300;
     if (posX < 0) posX = 0;
     player.style.left = posX + "px";
 
@@ -124,8 +124,8 @@ function updatePlayer() {
 
     if (!isHurt) player.src = "img/jumping-avatar.png";
 
-    const jumpHeight = 200;
-    const jumpSpeed = 15;
+    const jumpHeight = 250;
+    const jumpSpeed = 25;
     const gravity = 5;
     const groundLevel = 0;
 
@@ -174,7 +174,7 @@ function createDroplet() {
   droplet.src = "img/droplet.png";
   droplet.classList.add("droplet");
   droplet.style.position = "absolute";
-  droplet.style.left = "500px";
+  droplet.style.left = "1000px";
   droplet.style.bottom = `${Math.floor(Math.random() * 100) + 150}px`;
   gameArea.appendChild(droplet);
   droplets.push(droplet);
@@ -184,7 +184,7 @@ function createObstacle(type) {
   const obstacle = document.createElement("img");
   obstacle.src = type === "rock" ? "img/rock.png" : "img/puddle.png";
   obstacle.classList.add("obstacle");
-  obstacle.style.left = "800px";
+  obstacle.style.left = "1200px";
   obstacle.style.bottom = "0px";
   obstacle.style.position = "absolute";
   gameArea.appendChild(obstacle);
