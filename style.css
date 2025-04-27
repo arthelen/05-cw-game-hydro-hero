@@ -187,9 +187,9 @@ button a {
 .game-area {
   position: relative;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1200px;
   height: 100vh;
-  max-height: 700px;
+  max-height: 900px;
   background-image: url('img/level-background.png');
   background-repeat: repeat-x;
   background-position: 0 0;
@@ -259,9 +259,18 @@ button a {
   height: auto;
 }
 
+@keyframes heartFade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 .droplet {
   height: auto;
-  width: 70px;
+  width: 570px;
   animation: bob 1s infinite ease-in-out;
   z-index: 3;
 }
@@ -275,7 +284,7 @@ button a {
     z-index: 1;
     position: absolute;
     height: auto;
-    width: 70px;
+    width: 400px;
 }
 
 #player-avatar {
@@ -283,7 +292,7 @@ button a {
     bottom: 0;
     z-index: 2;
     left: 20px;
-    width: 150px;
+    width: 200px;
     height: auto;
     transition: bottom 0.1s, left 0.1s;
 }
@@ -469,6 +478,17 @@ button a {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
   }
 }
 
