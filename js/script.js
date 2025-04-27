@@ -60,18 +60,6 @@ function selectDifficulty(selected) {
 // start game functions
 // ====================
 
-  document.getElementById("return-home-btn").addEventListener("click", () => {
-  document.getElementById("level-complete").style.display = "none";
-  document.querySelector(".title-wrapper").style.display = "block";
-
-  player.style.display = "block";
-  player.src = "img/standing-avatar.png";
-  posX = 30;
-  posY = 0;
-  player.style.left = posX + "px";
-  player.style.bottom = posY + "px";
-});
-
 function startGame() {
   const titleWrapper = document.querySelector(".title-wrapper");
   titleWrapper.style.animation = "fadeOut 0.5s ease forwards";
@@ -83,7 +71,6 @@ function startGame() {
 
     setDifficultySettings();
     startLevel(1);
-    console.log("game is updating");
   }, 500);
 }
 
@@ -107,7 +94,7 @@ function updatePlayer() {
     player.style.left = posX + "px";
 
     backgroundX -= 2;
-    document.querySelector(".game-area").style.backgroundPosition = `${backgroundX}px 0`;
+    gameArea.style.backgroundPosition = `${backgroundX}px 0`;
 
     if (!isJumping && !isHurt) player.src = "img/walking-avatar.png";
   }
@@ -166,12 +153,10 @@ function createDroplet() {
   const droplet = document.createElement("img");
   droplet.src = "img/droplet.png";
   droplet.classList.add("droplet");
-
   droplet.style.position = "absolute";
-  // droplet.style.width = "20px";
   droplet.style.left = "500px";
   droplet.style.bottom = `${Math.floor(Math.random() * 100) + 150}px`;
-  document.querySelector(".game-area").appendChild(droplet);
+  gameArea.appendChild(droplet);
   droplets.push(droplet);
 }
 
@@ -179,14 +164,10 @@ function createObstacle(type) {
   const obstacle = document.createElement("img");
   obstacle.src = type === "rock" ? "img/rock.png" : "img/puddle.png";
   obstacle.classList.add("obstacle");
-  obstacle.dataset.type = type;
-
   obstacle.style.left = "800px";
   obstacle.style.bottom = "0px";
   obstacle.style.position = "absolute";
-  // obstacle.style.width = "30px";
-
-  document.querySelector(".game-area").appendChild(obstacle);
+  gameArea.appendChild(obstacle);
   obstacles.push(obstacle);
 }
 
@@ -207,26 +188,20 @@ function startLevel(levelNumber) {
   player.style.left = posX + "px";
   player.style.bottom = posY + "px";
 
-  // set hearts visibility based on lives
   const hearts = document.querySelectorAll(".heart");
   hearts.forEach((heart, index) => {
-    if (index < lives) {
-      heart.style.visibility = "visible";
-    } else {
-      heart.style.visibility = "hidden";
-    }
+    heart.style.visibility = index < lives ? "visible" : "hidden";
   });
 
   currentLevel = levelNumber;
   score = 0;
   timeElapsed = 0;
-
   obstacles.forEach(o => o.remove());
   droplets.forEach(d => d.remove());
   obstacles = [];
   droplets = [];
 
-  document.querySelector(".game-area").style.display = "block";
+  gameArea.style.display = "block";
   document.getElementById("score").textContent = 0;
   document.getElementById("timer").textContent = "0:00";
 
@@ -240,6 +215,7 @@ function startLevel(levelNumber) {
     const seconds = timeElapsed % 60;
     document.getElementById("timer").textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
 
+    if (timeElapsed === Math.floor(surviveTime / 2)) showHalfwayMessage();
     if (timeElapsed === surviveTime) {
       clearInterval(timerInterval);
       levelComplete();
@@ -254,10 +230,6 @@ function startLevel(levelNumber) {
 
   updateGame();
 }
-
-// ====================
-// update game loop
-// ====================
 
 function updateDroplets() {
   for (let i = droplets.length - 1; i >= 0; i--) {
@@ -301,7 +273,6 @@ function updateObstacles() {
       obsRect.top < playerRect.bottom &&
       obsRect.bottom > playerRect.top
     ) {
-      console.log("HIT!");
       score -= 15;
       document.getElementById("score").textContent = score;
       showPointPopup(15, false, obsRect.left, obsRect.top);
@@ -311,19 +282,16 @@ function updateObstacles() {
         const hearts = document.querySelectorAll(".heart");
         if (hearts[lives]) {
           hearts[lives].style.animation = "heartFade 0.5s forwards";
-        
           setTimeout(() => {
             hearts[lives].style.visibility = "hidden";
-            hearts[lives].style.animation = ""; // reset animation so it can be reused later
+            hearts[lives].style.animation = "";
           }, 500);
-        }        
-
+        }
         if (!isHurt) {
           isHurt = true;
           player.src = "img/hit-avatar.png";
           setTimeout(() => { isHurt = false; }, 500);
         }
-
         if (lives === 0) gameOver();
       }
 
@@ -352,7 +320,6 @@ function updateGame() {
 function levelComplete() {
   cancelAnimationFrame(updateGameFrame);
   clearInterval(timerInterval);
-
   document.getElementById("level-complete").style.display = "block";
   obstacles.forEach(o => o.remove());
   droplets.forEach(d => d.remove());
@@ -364,7 +331,6 @@ function levelComplete() {
 function gameOver() {
   cancelAnimationFrame(updateGameFrame);
   clearInterval(timerInterval);
-
   document.getElementById("game-over").style.display = "block";
   obstacles.forEach(o => o.remove());
   droplets.forEach(d => d.remove());
@@ -384,10 +350,63 @@ function showPointPopup(amount, isPositive, x, y) {
   popup.style.left = `${x}px`;
   popup.style.top = `${y}px`;
   popup.style.color = isPositive ? "#00cc66" : "#ff4444";
-
   document.body.appendChild(popup);
   setTimeout(() => { popup.remove(); }, 800);
 }
+
+function showHalfwayMessage() {
+  const halfwayMessage = document.getElementById("halfway-message");
+  halfwayMessage.style.display = "block";
+  setTimeout(() => { halfwayMessage.style.display = "none"; }, 3000);
+}
+
+function returnHome() {
+  cancelAnimationFrame(updateGameFrame);
+  clearInterval(timerInterval);
+  clearInterval(dropletInterval);
+  clearInterval(obstacleInterval);
+
+  document.getElementById("game-over").style.display = "none";
+  document.getElementById("level-complete").style.display = "none";
+  document.getElementById("game-screen").style.display = "none";
+  document.querySelector(".title-wrapper").style.display = "block";
+  document.getElementById("title-screen").style.display = "block";
+
+  player.style.display = "block";
+  player.src = "img/standing-avatar.png";
+  posX = 30;
+  posY = 0;
+  player.style.left = posX + "px";
+  player.style.bottom = posY + "px";
+
+  obstacles.forEach(obs => obs.remove());
+  droplets.forEach(d => droplet.remove());
+  obstacles = [];
+  droplets = [];
+
+  lives = 3;
+  score = 0;
+  timeElapsed = 0;
+}
+
+// ====================
+// button listeners
+// ====================
+
+document.getElementById("go-home-btn").addEventListener("click", returnHome);
+document.getElementById("return-home-btn").addEventListener("click", returnHome);
+
+document.getElementById("retry-btn").addEventListener("click", () => {
+  document.getElementById("game-over").style.display = "none";
+  player.style.display = "block";
+
+  if (difficulty === "easy") lives = 3;
+  else if (difficulty === "medium") lives = 2;
+  else if (difficulty === "hard") lives = 1;
+
+  document.querySelectorAll(".heart").forEach(h => h.style.visibility = "visible");
+  startLevel(currentLevel);
+});
 
 document.getElementById("pause-btn").addEventListener("click", () => {
   isPaused = !isPaused;
@@ -399,14 +418,14 @@ document.getElementById("pause-btn").addEventListener("click", () => {
     clearInterval(obstacleInterval);
 
     document.getElementById("pause-btn").textContent = "resume";
-    document.getElementById("paused-overlay").style.display = "block"; // <<< show overlay
+    document.getElementById("paused-overlay").style.display = "block";
   } else {
     timerInterval = setInterval(() => {
       timeElapsed++;
       const minutes = Math.floor(timeElapsed / 60);
       const seconds = timeElapsed % 60;
       document.getElementById("timer").textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-
+      if (timeElapsed === Math.floor(surviveTime / 2)) showHalfwayMessage();
       if (timeElapsed === surviveTime) {
         clearInterval(timerInterval);
         levelComplete();
@@ -421,42 +440,6 @@ document.getElementById("pause-btn").addEventListener("click", () => {
 
     updateGame();
     document.getElementById("pause-btn").textContent = "pause";
-    document.getElementById("paused-overlay").style.display = "none"; // <<< hide overlay
+    document.getElementById("paused-overlay").style.display = "none";
   }
-});
-
-// retry and home buttons
-document.getElementById("retry-btn").addEventListener("click", () => {
-  document.getElementById("game-over").style.display = "none";
-  player.style.display = "block";
-  document.querySelectorAll(".heart").forEach(h => h.style.visibility = "visible");
-  startLevel(currentLevel);
-});
-
-document.getElementById("go-home-btn").addEventListener("click", () => {
-  cancelAnimationFrame(updateGameFrame);
-  clearInterval(timerInterval);
-  clearInterval(dropletInterval);
-  clearInterval(obstacleInterval);
-
-  document.getElementById("game-over").style.display = "none";
-  document.getElementById("level-complete").style.display = "none";
-  document.querySelector(".game-area").style.display = "none";
-  document.querySelector(".title-wrapper").style.display = "block";
-
-  player.style.display = "block";
-  player.src = "img/standing-avatar.png";
-  posX = 30;
-  posY = 0;
-  player.style.left = posX + "px";
-  player.style.bottom = posY + "px";
-
-  document.querySelectorAll(".heart").forEach(h => h.style.visibility = "visible");
-
-  document.querySelector(".game-area").innerHTML = "";
-  lives = 3;
-  score = 0;
-  obstacles = [];
-  droplets = [];
-  timeElapsed = 0;
 });

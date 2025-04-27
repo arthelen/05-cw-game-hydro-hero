@@ -236,6 +236,25 @@ button a {
   animation: fadeIn 0.5s ease forwards;
 }
 
+.halfway-message {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgb(255, 201, 7, 0.9);
+  color: #003366;
+  font-family: Georgia, serif;
+  letter-spacing: 4px;
+  font-weight: bold;
+  font-size: 1.5rem;
+  letter-spacing: 4px;
+  padding: 20px 30px;
+  border: 3px solid #003366;
+  border-radius: 8px;
+  z-index: 999;
+  animation: fadeIn 0.5s ease forwards;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
