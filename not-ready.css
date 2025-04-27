@@ -29,6 +29,10 @@ body {
   .droplet-icon {
     width: 130px;
   }
+
+  .thinking-icon {
+    width: 90px;
+  }
   
   h1 {
     font-size: 30px;

@@ -461,6 +461,17 @@ button a {
   box-shadow: 5px 5px #003366;
 }
 
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 701px) {
   .game-area {
     max-width: 100%;

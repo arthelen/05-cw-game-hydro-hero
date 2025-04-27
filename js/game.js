@@ -280,7 +280,7 @@ document.getElementById("go-home-btn").addEventListener("click", () => {
   document.getElementById("game-over").style.display = "none";
   document.getElementById("level-complete").style.display = "none";
   document.querySelector(".game-area").style.display = "none";
-  document.getElementById("title-screen").style.display = "block";
+  document.getElementById("title-wrapper").style.display = "block";
 
   player.style.display = "block";
   player.src = "img/standing-avatar.png";
