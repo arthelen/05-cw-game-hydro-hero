@@ -18,14 +18,42 @@ body {
     text-align: center;
 }
 
-  #title-screen {
-    background-image: url('img/level-background.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    border: solid 4px #003366;
-    padding: 50px;
+.title-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  height: 100vh;
+  max-height: 900px;
+  background-image: url('img/level-background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 4px solid #003366;
+  border-radius: 10px;
+  padding: 270px 20px;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  position: relative;
 }
+
+/* .logo-container {
+  margin-bottom: 20px;
+}
+
+.avatar-container {
+  margin-bottom: 20px;
+}
+
+.difficulty-buttons {
+  margin-top: 20px;
+}
+
+.buttons {
+  margin-top: 10px;
+} */
 
 .logo {
     width: 200px;
@@ -36,26 +64,20 @@ body {
 .title {
     color: #FFC907;
     font-size: 3.5rem;
-    margin-top: 40px;
+    margin-top: 100px;
     text-shadow: 2px 0 #003366, -2px 0 #003366, 0 2px #003366, 0 -2px #003366,
                1px 1px #003366, -1px -1px #003366, 1px -1px #003366, -1px 1px #003366;
 }
 
 .tagline {
-    font-family: Georgia, serif;
-    letter-spacing: 4px;
-    font-weight: bold;
     font-size: 1rem;
     color: #003366;
     /* text-shadow: 2px 0 #FFC907, -2px 0 #FFC907, 0 2px #FFC907, 0 -2px #FFC907,
                1px 1px #FFC907, -1px -1px #FFC907, 1px -1px #FFC907, -1px 1px #FFC907; */
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .funny-line {
-    font-family: Georgia, serif;
-    letter-spacing: 4px;
-    font-weight: bold;
     font-size: 0.8rem;
     margin: 10px 0;
     color: #FFC907;
@@ -106,7 +128,7 @@ body {
     font-family: Georgia, serif;
     letter-spacing: 4px;
     font-weight: bold;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     padding: 15px 25px;
     margin: 10px;
     border: none;
@@ -357,17 +379,18 @@ button a {
     font-size: 0.7em;
     margin: 5px;
     padding: 10px 20px;
-    background-color: #FFD700;
+    background-color: #FFC907;
     border: 2px solid #003366;
     border-radius: 10px;
     color: #003366;
     cursor: pointer;
+    transition: 0.2s ease-in-out;
 }
 
 .bottom-right-buttons button:hover {
     background-color: #FFC907;
     color: #003366;
-    box-shadow: 4px 4px #003366;
+    box-shadow: 5px 5px #003366;
 }
 
 .game-over-text {
@@ -417,12 +440,14 @@ button a {
 }
 
 .difficulty-buttons button {
-  font-family: 'Press Start 2P', cursive;
+  font-family: Georgia, serif;
+  letter-spacing: 4px;
+  font-weight: bold;
   padding: 15px 20px;
   margin: 8px;
   border: none;
   border-radius: 10px;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   cursor: pointer;
   box-shadow: 2px 2px #000;
   background-color: #FFC907; /* green */
@@ -431,9 +456,9 @@ button a {
 }
 
 .difficulty-buttons button:hover {
-  background-color: #003366;
-  color: #FFC907;
-  box-shadow: 4px 4px #003366;
+  background-color: #FFC907;
+  color: #003366;
+  box-shadow: 5px 5px #003366;
 }
 
 @media (max-width: 701px) {
