@@ -255,7 +255,7 @@ button a {
 }
 
 .heart {
-  width: 25px;
+  width: 30px;
   height: auto;
 }
 
@@ -269,8 +269,9 @@ button a {
 }
 
 .droplet {
+  width: 57px;
   height: auto;
-  width: 570px;
+  image-rendering: pixelated;
   animation: bob 1s infinite ease-in-out;
   z-index: 3;
 }
@@ -281,10 +282,11 @@ button a {
 }
 
 .obstacle {
-    z-index: 1;
-    position: absolute;
-    height: auto;
-    width: 400px;
+  width: 55px;
+  height: auto;
+  image-rendering: pixelated;
+  position: absolute;
+  z-index: 1;
 }
 
 #player-avatar {
@@ -292,7 +294,7 @@ button a {
     bottom: 0;
     z-index: 2;
     left: 20px;
-    width: 200px;
+    width: 170px;
     height: auto;
     transition: bottom 0.1s, left 0.1s;
 }
@@ -492,7 +494,7 @@ button a {
   }
 }
 
-@media (max-width: 701px) {
+/* @media (max-width: 701px) {
   .game-area {
     max-width: 100%;
     max-height: 100vh;
@@ -624,5 +626,5 @@ button a {
   .point-popup {
     font-size: 12px;
   }
-}
+} */
   

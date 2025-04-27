@@ -36,15 +36,15 @@ let surviveTime;
 
 function setDifficultySettings() {
   if (difficulty === "easy") {
-    obstacleFrequency = 3000;
+    obstacleFrequency = 3400;
     surviveTime = 30;
     lives = 3;
   } else if (difficulty === "medium") {
-    obstacleFrequency = 2000;
+    obstacleFrequency = 2700;
     surviveTime = 45;
     lives = 2;
   } else if (difficulty === "hard") {
-    obstacleFrequency = 1000;
+    obstacleFrequency = 2000;
     surviveTime = 60;
     lives = 1;
   }
@@ -116,7 +116,7 @@ function updatePlayer() {
 
     if (!isHurt) player.src = "img/jumping-avatar.png";
 
-    const jumpHeight = 150;
+    const jumpHeight = 200;
     const jumpSpeed = 15;
     const gravity = 5;
     const groundLevel = 0;
@@ -167,7 +167,7 @@ function createDroplet() {
   droplet.classList.add("droplet");
 
   droplet.style.position = "absolute";
-  droplet.style.width = "20px";
+  // droplet.style.width = "20px";
   droplet.style.left = "500px";
   droplet.style.bottom = `${Math.floor(Math.random() * 100) + 150}px`;
   document.querySelector(".game-area").appendChild(droplet);
@@ -180,10 +180,10 @@ function createObstacle(type) {
   obstacle.classList.add("obstacle");
   obstacle.dataset.type = type;
 
-  obstacle.style.left = "500px";
+  obstacle.style.left = "800px";
   obstacle.style.bottom = "0px";
   obstacle.style.position = "absolute";
-  obstacle.style.width = "30px";
+  // obstacle.style.width = "30px";
 
   document.querySelector(".game-area").appendChild(obstacle);
   obstacles.push(obstacle);
