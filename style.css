@@ -3,13 +3,17 @@
 /* blue: #003366; */
 
 /* font teplate */
+/* font-family: 'Press Start 2P', cursive;
+AND
+font-family: Georgia, serif;
+letter-spacing: 4px; */
 
 body {
     margin: 0;
     padding: 0;
     background-color: #87CEEB;
     font-family: 'Press Start 2P', cursive;
-    color: #fff;
+    color: #003366;
     overflow: hidden;
     text-align: center;
 }
@@ -38,20 +42,25 @@ body {
 }
 
 .tagline {
+    font-family: Georgia, serif;
+    letter-spacing: 4px;
+    font-weight: bold;
     font-size: 1rem;
-    color: #ffffff;
-    text-shadow: 2px 0 #003366, -2px 0 #003366, 0 2px #003366, 0 -2px #003366,
-               1px 1px #003366, -1px -1px #003366, 1px -1px #003366, -1px 1px #003366;
+    color: #003366;
+    /* text-shadow: 2px 0 #FFC907, -2px 0 #FFC907, 0 2px #FFC907, 0 -2px #FFC907,
+               1px 1px #FFC907, -1px -1px #FFC907, 1px -1px #FFC907, -1px 1px #FFC907; */
     margin-top: 10px;
 }
 
 .funny-line {
+    font-family: Georgia, serif;
+    letter-spacing: 4px;
+    font-weight: bold;
     font-size: 0.8rem;
+    margin: 10px 0;
     color: #FFC907;
-    font-style: italic;
-    margin: 20px 0;
     text-shadow: 2px 0 #003366, -2px 0 #003366, 0 2px #003366, 0 -2px #003366,
-               1px 1px #003366, -1px -1px #003366, 1px -1px #003366, -1px 1px #003366;
+    1px 1px #003366, -1px -1px #003366, 1px -1px #003366, -1px 1px #003366;
 }
 
 .avatar-container {
@@ -94,7 +103,9 @@ body {
 }
 
 .buttons button {
-    font-family: 'Press Start 2P', cursive;
+    font-family: Georgia, serif;
+    letter-spacing: 4px;
+    font-weight: bold;
     font-size: 0.8rem;
     padding: 15px 25px;
     margin: 10px;
@@ -173,15 +184,41 @@ button a {
   align-items: center;
 }
 
-.lives, .timer, .level-display {
-    text-align: center;
+.hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 15px 20px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.lives {
+  text-align: left;
+  margin-top: -90px;
+  margin-left: 20px;
+}
+
+.timer {
+  text-align: right;
+  margin-top: -90px;
+  margin-right: 20px;
 }
 
 .lives, .timer {
     color: #003366;
+    font-family: Georgia, serif;
+    letter-spacing: 4px;
+    font-weight: bold;
 }
 
 .level-display {
+    margin-top: 10px;
+    text-align: center;
     color: #003366;
     font-size: 1.5rem;
     text-shadow: 2px 0 #FFC907, -2px 0 #FFC907, 0 2px #FFC907, 0 -2px #FFC907,
@@ -196,8 +233,8 @@ button a {
 }
 
 .heart {
-    width: 45px;
-    height: auto;
+  width: 25px;
+  height: auto;
 }
 
 .droplet {
@@ -257,14 +294,22 @@ button a {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 24px;
-  font-family: 'Press Start 2P', cursive;
+  font-family: Georgia, serif;
+  letter-spacing: 4px;
+  font-weight: bold;
   background: #FFC907;
   color: #003366;
-  padding: 20px 30px;
+  padding: 37px;
   border: 3px solid #003366;
   border-radius: 8px;
   z-index: 999;
   text-align: center;
+}
+
+.droplet-icon-complete {
+  width: 50px;
+  height: auto;
+  margin-top: 20px;
 }
 
 #return-home-btn {
@@ -306,8 +351,10 @@ button a {
 }
 
 .bottom-right-buttons button {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 0.5em;
+    font-family: Georgia, serif;
+    letter-spacing: 4px;
+    font-weight: bold;
+    font-size: 0.7em;
     margin: 5px;
     padding: 10px 20px;
     background-color: #FFD700;
@@ -333,7 +380,9 @@ button a {
   padding: 20px 30px;
   border-radius: 10px;
   text-align: center;
-  font-family: 'Press Start 2P', cursive;
+  font-family: Georgia, serif;
+  letter-spacing: 4px;
+  font-weight: bold;
   font-size: 20px;
   color: #cc4444;
   z-index: 999;
@@ -355,6 +404,37 @@ button a {
   background-color: #a52d2d;
 }
 
+/* Difficulty Selection Styling */
+.difficulty-buttons {
+  margin-top: 20px;
+}
+
+.difficulty-buttons h2 {
+  font-size: 1.2rem;
+  color: #003366;
+  text-shadow: 2px 2px #FFC907;
+  margin-bottom: 15px;
+}
+
+.difficulty-buttons button {
+  font-family: 'Press Start 2P', cursive;
+  padding: 15px 20px;
+  margin: 8px;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 2px 2px #000;
+  background-color: #FFC907; /* green */
+  color: #003366;
+  transition: 0.2s ease-in-out;
+}
+
+.difficulty-buttons button:hover {
+  background-color: #003366;
+  color: #FFC907;
+  box-shadow: 4px 4px #003366;
+}
 
 @media (max-width: 701px) {
   .game-area {
