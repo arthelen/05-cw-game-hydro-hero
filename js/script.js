@@ -56,11 +56,31 @@ function selectDifficulty(selected) {
   startGame();
 }
 
+function fadeInMusic(audioElement, duration = 2000) {
+  audioElement.volume = 0; // start at 0 volume
+  audioElement.play();
+
+  const step = 0.07; // how much to increase each step
+  const intervalTime = duration * step; // how fast each step happens
+
+  const fadeInterval = setInterval(() => {
+    if (audioElement.volume < 1) {
+      audioElement.volume = Math.min(1, audioElement.volume + step);
+    } else {
+      clearInterval(fadeInterval);
+    }
+  }, intervalTime);
+}
+
 // ====================
 // start game functions
 // ====================
 
 function startGame() {
+  document.getElementById("title-music").pause();
+  document.getElementById("title-music").currentTime = 0;
+  fadeInMusic(document.getElementById("background-music"));
+
   const titleWrapper = document.querySelector(".title-wrapper");
   titleWrapper.style.animation = "fadeOut 0.5s ease forwards";
 
@@ -248,6 +268,7 @@ function updateDroplets() {
       dropRect.bottom > playerRect.top
     ) {
       score += 100;
+      document.getElementById("droplet-sound").play();
       document.getElementById("score").textContent = score;
       showPointPopup(100, true, dropRect.left, dropRect.top);
       drop.remove();
@@ -275,6 +296,7 @@ function updateObstacles() {
       obsRect.bottom > playerRect.top
     ) {
       score -= 15;
+      document.getElementById("hit-sound").play();
       document.getElementById("score").textContent = score;
       showPointPopup(15, false, obsRect.left, obsRect.top);
 
@@ -368,6 +390,10 @@ function showHalfwayMessage() {
 }
 
 function returnHome() {
+  document.getElementById("background-music").pause();
+  document.getElementById("background-music").currentTime = 0;
+  document.getElementById("title-music").play();
+
   cancelAnimationFrame(updateGameFrame);
   clearInterval(timerInterval);
   clearInterval(dropletInterval);
@@ -450,3 +476,7 @@ document.getElementById("pause-btn").addEventListener("click", () => {
     document.getElementById("paused-overlay").style.display = "none";
   }
 });
+
+window.onload = function() {
+  document.getElementById("title-music").play();
+};
