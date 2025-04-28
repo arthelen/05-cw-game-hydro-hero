@@ -244,9 +244,7 @@ button a {
   background: rgb(255, 201, 7, 0.9);
   color: #003366;
   font-family: 'Press Start 2P', cursive;
-  font-weight: bold;
-  font-size: 1.5rem;
-  letter-spacing: 4px;
+  font-size: 1rem;
   padding: 20px 30px;
   border: 3px solid #003366;
   border-radius: 8px;
@@ -370,7 +368,7 @@ button a {
   font-family: Georgia, serif;
   letter-spacing: 4px;
   font-weight: bold;
-  background: rgb(255, 201, 7, 0.9);
+  background: rgb(255, 201, 7, 0.77);
   color: #003366;
   padding: 37px;
   border: 3px solid #003366;
@@ -381,9 +379,7 @@ button a {
 
 .popup-message span {
   font-family: 'Press Start 2P', cursive;
-  color: #FFC907;
-  text-shadow: 2px 0 #003366, -2px 0 #003366, 0 2px #003366, 0 -2px #003366,
-               1px 1px #003366, -1px -1px #003366, 1px -1px #003366, -1px 1px #003366;
+  color: #003366;
 }
 
 .droplet-icon-complete {
@@ -392,23 +388,24 @@ button a {
   margin-top: 20px;
 }
 
-/* #return-home-btn {
-  margin-top: 20px;
+#return-home-btn {
+  margin: 10px;
   padding: 10px 20px;
   font-family: Georgia, serif;
   letter-spacing: 4px;
   font-weight: bold;
   font-size: 14px;
-  background-color: #003366;
-  color: #FFC907;
+  background-color: #FFC907;
+  color: #003366;
   border: solid 2px #003366;
   border-radius: 6px;
   cursor: pointer;
-} */
+  transition: 0.2s ease-in-out;
+}
 
-/* #return-home-btn:hover {
-  background-color: #005fa3;
-} */
+#return-home-btn:hover {
+  box-shadow: 5px 5px #003366;
+}
 
 #retry-btn, #go-home-btn {
   margin: 10px;
