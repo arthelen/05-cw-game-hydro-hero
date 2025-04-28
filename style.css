@@ -243,8 +243,7 @@ button a {
   transform: translate(-50%, -50%);
   background: rgb(255, 201, 7, 0.9);
   color: #003366;
-  font-family: Georgia, serif;
-  letter-spacing: 4px;
+  font-family: 'Press Start 2P', cursive;
   font-weight: bold;
   font-size: 1.5rem;
   letter-spacing: 4px;
@@ -393,36 +392,41 @@ button a {
   margin-top: 20px;
 }
 
-#return-home-btn {
+/* #return-home-btn {
   margin-top: 20px;
   padding: 10px 20px;
-  font-family: 'Press Start 2P', cursive;
+  font-family: Georgia, serif;
+  letter-spacing: 4px;
+  font-weight: bold;
   font-size: 14px;
   background-color: #003366;
   color: #FFC907;
-  border: none;
+  border: solid 2px #003366;
   border-radius: 6px;
   cursor: pointer;
-}
+} */
 
-#return-home-btn:hover {
+/* #return-home-btn:hover {
   background-color: #005fa3;
-}
+} */
 
 #retry-btn, #go-home-btn {
   margin: 10px;
   padding: 10px 20px;
-  font-family: 'Press Start 2P', cursive;
+  font-family: Georgia, serif;
+  letter-spacing: 4px;
+  font-weight: bold;
   font-size: 14px;
-  background-color: #cc4444;
-  color: white;
-  border: none;
+  background-color: #FFC907;
+  color: #003366;
+  border: solid 2px #003366;
   border-radius: 6px;
   cursor: pointer;
+  transition: 0.2s ease-in-out;
 }
 
 #retry-btn:hover, #go-home-btn:hover {
-  background-color: #a52d2d;
+    box-shadow: 5px 5px #003366;
 }
 
 .bottom-right-buttons {
@@ -457,33 +461,39 @@ button a {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
-  border: 3px solid #cc4444;
-  padding: 20px 30px;
+  background: rgb(0, 51, 102, 0.77);
+  border: 3px solid #FFC907;
+  padding: 50px 30px;
   border-radius: 10px;
   text-align: center;
   font-family: Georgia, serif;
   letter-spacing: 4px;
   font-weight: bold;
   font-size: 20px;
-  color: #cc4444;
+  color: #FFC907;
   z-index: 999;
+}
+
+.game-over-text span {
+  font-family: 'Press Start 2P', cursive;
+  color: #FFC907;
 }
 
 .game-over-buttons button {
   margin: 10px;
   padding: 10px 20px;
-  font-family: 'Press Start 2P', cursive;
   font-size: 14px;
-  background-color: #cc4444;
-  color: white;
-  border: none;
-  border-radius: 6px;
   cursor: pointer;
+  background-color: #FFC907;
+  border: 2px solid #003366;
+  border-radius: 10px;
+  color: #003366;
 }
 
 .game-over-buttons button:hover {
-  background-color: #a52d2d;
+  background-color: #FFC907;
+  color: #003366;
+  box-shadow: 5px 5px #003366;
 }
 
 /* Difficulty Selection Styling */
@@ -504,7 +514,7 @@ button a {
   font-weight: bold;
   padding: 15px 20px;
   margin: 8px;
-  border: none;
+  border: solid 2px #003366;
   border-radius: 10px;
   font-size: 1.2rem;
   cursor: pointer;

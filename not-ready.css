@@ -3,30 +3,41 @@ body {
     padding: 0;
     background-color: #87CEEB;
     font-family: 'Press Start 2P', cursive;
-    color: #003366;
+    text-align: center;
+    /* color: #003366;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    text-align: center;
-    background-image: url('img/level-background.png'); /* optional repeating bg */
-    background-size: cover; /* optional full cover bg */
-    background-position: center; /* optional center bg */
-    background-repeat: no-repeat;
+    background-image: url('img/level-background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
   }
   
   .container {
-    background: rgba(255, 255, 255, 0.85);
-    padding: 40px;
-    border: 10px solid #003366;
+    width: 100%;
+    max-width: 1200px;
+    height: 100vh;
+    max-height: 970px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgb(255, 201, 7, 0.5);
+    border: 4px solid #003366;
     border-radius: 10px;
-    max-width: 500px;
-    width: 90%;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
-    margin-bottom: 170px;
+    padding: 370px 100px;
+    margin: 100px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    position: relative;
   }
   
   .droplet-icon {
+    margin-top: 100px;
     width: 130px;
   }
 
@@ -63,7 +74,7 @@ body {
   .back-btn {
     display: inline-block;
     margin-top: 50px;
-    margin-bottom: 30px;
+    margin-bottom: 100px;
     text-decoration: none;
     background-color: #FFC907;
     color: #003366;

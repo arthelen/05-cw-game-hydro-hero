@@ -34,7 +34,7 @@
         <!-- <button id="start-button" onclick="startGame()">start</button><br> -->
         <button><a href="not-ready.html">avatar</a></button>
         <button><a href="rules.html">rules</a></button>
-        <button><a href="not-ready.html">about</a></button>
+        <button><a href="https://www.charitywater.org/about" target="_blank">about</a></button>
         <button><a href="https://www.charitywater.org/take-action" target="_blank">donate</a></button>
       </div>
       <div class="logo-container">
@@ -49,7 +49,7 @@
     <div class="game-area">
       <!-- game over text -->
       <div id="game-over" class="game-over-text" style="display: none;">
-        game over! better luck next time!
+        <span>game over</span><br><br>better luck next time!
         <br><br>
         <div class="game-over-buttons">
           <button id="retry-btn">retry</button>
@@ -90,9 +90,10 @@
       <!-- bottom right: pause/settings/home -->
       <div class="bottom-right-buttons">
         <button id="pause-btn">pause</button>
-        <button><a href="rules.html">rules</a></button>
-        <button><a href="index.html">home</a></button>
+        <button id="rules-btn">rules</button>
+        <button id="home-btn">home</button>
       </div>
+      
     </div>
     <div id="level-complete" class="popup-message">
       <img src="img/droplet.png" alt="Pixelated blue water droplet" class="droplet-icon-complete"><br><br>

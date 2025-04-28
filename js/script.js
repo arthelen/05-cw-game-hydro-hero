@@ -107,6 +107,11 @@ document.addEventListener("keyup", (e) => {
 });
 
 function updatePlayer() {
+  if (isPaused) {
+    requestAnimationFrame(updatePlayer); // Keep checking, but don't move
+    return;
+  }
+
   if (keys["d"] || keys["arrowright"]) {
     posX += 5;
     if (posX > 240) posX = 300;
@@ -130,6 +135,7 @@ function updatePlayer() {
     const groundLevel = 0;
 
     let jumpInterval = setInterval(() => {
+      if (isPaused) return; // <-- optional: pause mid-jump (if you want)
       posY += jumpSpeed;
       player.style.bottom = posY + "px";
 
@@ -137,6 +143,7 @@ function updatePlayer() {
         clearInterval(jumpInterval);
 
         let fallInterval = setInterval(() => {
+          if (isPaused) return; // <-- optional: pause mid-fall (if you want)
           posY -= gravity;
           player.style.bottom = posY + "px";
 
@@ -288,13 +295,24 @@ function updateObstacles() {
 
     const obsRect = obs.getBoundingClientRect();
     const playerRect = player.getBoundingClientRect();
-
+    
+    // shrink hitbox for the obstacle
+    const shrinkX = 7;
+    const shrinkY = 7;
+    
+    const smallerObsRect = {
+      left: obsRect.left + shrinkX,
+      right: obsRect.right - shrinkX,
+      top: obsRect.top + shrinkY,
+      bottom: obsRect.bottom - shrinkY,
+    };
+    
     if (
-      obsRect.left < playerRect.right &&
-      obsRect.right > playerRect.left &&
-      obsRect.top < playerRect.bottom &&
-      obsRect.bottom > playerRect.top
-    ) {
+      smallerObsRect.left < playerRect.right &&
+      smallerObsRect.right > playerRect.left &&
+      smallerObsRect.top < playerRect.bottom &&
+      smallerObsRect.bottom > playerRect.top
+    ){
       score -= 15;
       document.getElementById("hit-sound").play();
       document.getElementById("score").textContent = score;
@@ -428,6 +446,13 @@ function returnHome() {
 
 document.getElementById("go-home-btn").addEventListener("click", returnHome);
 document.getElementById("return-home-btn").addEventListener("click", returnHome);
+document.getElementById("rules-btn").addEventListener("click", () => {
+  window.location.href = "rules.html";
+});
+document.getElementById("home-btn").addEventListener("click", () => {
+  window.location.href = "index.html";
+});
+
 
 document.getElementById("retry-btn").addEventListener("click", () => {
   document.getElementById("game-over").style.display = "none";
