@@ -37,15 +37,15 @@ let surviveTime;
 
 function setDifficultySettings() {
   if (difficulty === "easy") {
-    obstacleFrequency = 3400;
+    obstacleFrequency = 5000;
     surviveTime = 30;
     lives = 3;
   } else if (difficulty === "medium") {
-    obstacleFrequency = 2700;
+    obstacleFrequency = 3000;
     surviveTime = 45;
     lives = 2;
   } else if (difficulty === "hard") {
-    obstacleFrequency = 2000;
+    obstacleFrequency = 2200;
     surviveTime = 60;
     lives = 1;
   }
@@ -131,7 +131,7 @@ function updatePlayer() {
 
     const jumpHeight = 250;
     const jumpSpeed = 25;
-    const gravity = 5;
+    const gravity = 3;
     const groundLevel = 0;
 
     let jumpInterval = setInterval(() => {
@@ -297,8 +297,8 @@ function updateObstacles() {
     const playerRect = player.getBoundingClientRect();
     
     // shrink hitbox for the obstacle
-    const shrinkX = 7;
-    const shrinkY = 7;
+    const shrinkX = 50;
+    const shrinkY = 50;
     
     const smallerObsRect = {
       left: obsRect.left + shrinkX,

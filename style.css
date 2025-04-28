@@ -332,7 +332,7 @@ button a {
     bottom: 0;
     z-index: 2;
     left: 20px;
-    width: 170px;
+    width: 215px;
     height: auto;
     transition: bottom 0.1s, left 0.1s;
 }
